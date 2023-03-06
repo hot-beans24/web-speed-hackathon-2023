@@ -5,10 +5,13 @@ import { SignUpModal } from '../../modal/SignUpModal';
 import { Providers } from '../Providers';
 import { Routes } from '../Routes';
 
-export const App: FC = () => (
-  <Providers>
-    <Routes />
-    <SignInModal />
-    <SignUpModal />
-  </Providers>
-);
+export const App: FC = () => {
+
+  return (
+    <Providers>
+      <Routes />
+      <SignInModal />
+      <SignUpModal />
+    </Providers>
+  )
+};

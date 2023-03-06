@@ -1,7 +1,10 @@
 import path from 'node:path';
 
+// import terser from '@rollup/plugin-terser';
 import react from '@vitejs/plugin-react';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
+// import viteCompression from 'vite-plugin-compression';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import topLevelAwait from 'vite-plugin-top-level-await';
 import wasm from 'vite-plugin-wasm';
@@ -30,7 +33,13 @@ export default defineConfig(async () => {
       rollupOptions: {
         output: {
           experimentalMinChunkSize: 40960,
+          // entryFileNames: 'assets/bundle.js'
         },
+        plugins: [
+          // viteCompression(),
+          // terser(),
+          visualizer()
+        ]
       },
       target: 'es2015',
     },

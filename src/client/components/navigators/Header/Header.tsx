@@ -16,7 +16,7 @@ export const Header: FC = () => {
     <header className={styles.container()}>
       <Anchor href="/">
         <div className={styles.logo()}>
-          <Image src="/icons/logo.svg" />
+          <Image alt="logo" height="32px" src="/icons/logo.svg" width="205px" />
         </div>
       </Anchor>
       {isAuthUser ? (
@@ -27,6 +27,7 @@ export const Header: FC = () => {
         </Anchor>
       ) : (
         <button
+          aria-label="login modal"
           className={styles.signInButton()}
           data-testid="navigate-signin"
           onClick={() => handleOpenModal('SIGN_IN')}

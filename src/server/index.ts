@@ -16,6 +16,9 @@ import { initializeApolloServer } from './graphql';
 import { initializeDatabase } from './utils/initialize_database';
 import { rootResolve } from './utils/root_resolve';
 
+
+export {}
+
 const PORT = Number(process.env.PORT ?? 8080);
 
 async function init(): Promise<void> {
@@ -56,10 +59,29 @@ async function init(): Promise<void> {
     }),
   );
 
+  app.use(
+    route.get(/images/, async (ctx) => {
+      const [pathname] = ctx.url.split('.');
+      await send(ctx, rootResolve(`/dist${pathname}.webp`));
+    })
+  );
+
   app.use(serve(rootResolve('dist')));
   app.use(serve(rootResolve('public')));
 
-  app.use(async (ctx) => await send(ctx, rootResolve('/dist/index.html')));
+  app.use(
+    route.get(['/', '/product/:number', '/order'], async (ctx) => {
+      await send(ctx, rootResolve('/dist/index.html'));
+    })
+  );
+
+  app.use(async (ctx) => {
+    if (ctx.status == 404) {
+      await send(ctx, rootResolve('/src/server/404.html'));
+    }
+  });
+
+
 
   httpServer.listen({ port: PORT }, () => {
     console.log(`🚀 Server ready at http://localhost:${PORT}`);

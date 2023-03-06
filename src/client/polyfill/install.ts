@@ -1,6 +1,6 @@
 import 'core-js';
-import 'date-time-format-timezone';
-import 'setimmediate';
+// import 'date-time-format-timezone';
+// import 'setimmediate';
 import './temporal';
 
 declare global {

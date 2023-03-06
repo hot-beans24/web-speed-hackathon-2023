@@ -1,21 +1,19 @@
-import type { FC } from 'react';
-import { Helmet } from 'react-helmet';
+import { type FC } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 import { Layout } from '../../components/application/Layout';
-import { ProductList } from '../../components/feature/ProductList';
+// import { ProductList } from '../../components/feature/ProductList';
 import { ProductHeroImage } from '../../components/product/ProductHeroImage';
-import { useFeatures } from '../../hooks/useFeatures';
+// import { useFeatures } from '../../hooks/useFeatures';
 import { useRecommendation } from '../../hooks/useRecommendation';
 
 import * as styles from './Top.styles';
 
+// const ProductList = lazy(() => import('../../components/feature/ProductList').then(({ ProductList }) => ({ default: ProductList })));
+
 export const Top: FC = () => {
   const { recommendation } = useRecommendation();
-  const { features } = useFeatures();
-
-  if (recommendation === undefined || features === undefined) {
-    return null;
-  }
+  // const { features } = useFeatures();
 
   return (
     <>
@@ -24,17 +22,17 @@ export const Top: FC = () => {
       </Helmet>
       <Layout>
         <div>
-          <ProductHeroImage product={recommendation.product} title="今週のオススメ" />
+          {recommendation && <ProductHeroImage product={recommendation.product} title="今週のオススメ" />}
 
           <div className={styles.featureList()}>
-            {features.map((featureSection) => {
+            {/* {features && features.map((featureSection) => {
               return (
                 <div key={featureSection.id} className={styles.feature()}>
                   <h2 className={styles.featureHeading()}>{featureSection.title}</h2>
-                  <ProductList featureSection={featureSection} />
+                    <ProductList featureSection={featureSection} />
                 </div>
               );
-            })}
+            })} */}
           </div>
         </div>
       </Layout>

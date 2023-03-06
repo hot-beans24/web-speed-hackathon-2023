@@ -44,7 +44,6 @@ export const ReviewSection: FC<Props> = memo(({ hasSignedIn, onSubmitReview, rev
     },
     validateOnChange: true,
   });
-
   return (
     <div>
       {reviews != null ? <ReviewList reviews={reviews} /> : null}

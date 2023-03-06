@@ -9,10 +9,12 @@ type Props = {
   children: ReactNode;
 };
 
-export const Layout: FC<Props> = ({ children }) => (
-  <>
-    <Header />
-    <main className={styles.container()}>{children}</main>
-    <Footer />
-  </>
-);
+export const Layout: FC<Props> = ({ children }) => {
+  return (
+    <>
+      <Header />
+        <main className={styles.container()}>{children}</main>
+      <Footer />
+    </>
+  )
+};

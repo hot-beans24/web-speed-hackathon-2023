@@ -41,6 +41,7 @@ type Props = {
 };
 
 export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
+
   const thumbnailFile = product.media.find((productMedia) => productMedia.isThumbnail)?.file;
 
   const [imageDataUrl, setImageDataUrl] = useState<string>();
@@ -64,7 +65,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
             <Anchor href={`/product/${product.id}`}>
               <div className={styles.container()}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
-                  <img className={styles.image()} src={imageDataUrl} />
+                  <img alt="今週のおすすめ" className={styles.image()} src={imageDataUrl} />
                 </AspectRatio>
 
                 <div className={styles.overlay()}>
